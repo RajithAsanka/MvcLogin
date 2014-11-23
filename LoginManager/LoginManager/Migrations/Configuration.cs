@@ -1,3 +1,8 @@
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+
 namespace LoginManager.Migrations
 {
     using System;
@@ -15,6 +20,8 @@ namespace LoginManager.Migrations
 
         protected override void Seed(LoginManager.Models.ApplicationDbContext context)
         {
+
+            AddUserAndRole(context);
             context.Contacts.AddOrUpdate(p => p.Name,
        new Contact
        {
@@ -52,6 +59,25 @@ namespace LoginManager.Migrations
             Email = "numesh@example.com",
         }
         );
+        }
+
+        bool AddUserAndRole(LoginManager.Models.ApplicationDbContext context)
+        {
+            IdentityResult ir;
+            var rm = new RoleManager<IdentityRole>
+                (new RoleStore<IdentityRole>(context));
+            ir = rm.Create(new IdentityRole("canEdit"));
+            var um = new UserManager<ApplicationUser>(
+                new UserStore<ApplicationUser>(context));
+            var user = new ApplicationUser()
+            {
+                UserName = "pgrasanka@gmail.com",
+            };
+            ir = um.Create(user, "#123abcD");
+            if (ir.Succeeded == false)
+                return ir.Succeeded;
+            ir = um.AddToRole(user.Id, "canEdit");
+            return ir.Succeeded;
         }
     }
 }
