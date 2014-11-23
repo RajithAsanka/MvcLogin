@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "LoginManager8649",
+            "location": "Southeast Asia"
+        },
+        "databases": [
+            {
+                "connectionStringName": "DefaultConnection",
+                "databaseName": "LoginManager8649_db",
+                "serverName": "p8ahebgz9q",
+                "user": "iitdatabse",
+                "password": "",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "Southeast Asia"
+            }
+        ]
+    }
+}
