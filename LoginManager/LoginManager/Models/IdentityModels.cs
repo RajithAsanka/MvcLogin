@@ -29,5 +29,7 @@ namespace LoginManager.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<LoginManager.Models.Contact> Contacts { get; set; }
     }
 }
